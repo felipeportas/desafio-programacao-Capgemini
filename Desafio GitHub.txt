@@ -1,0 +1,89 @@
+# Questão 01
+
+Escreva um algoritmo que mostre na tela uma escada de tamanho n utilizando o caractere * e espaços. A base e altura da escada devem ser iguais ao valor de n. A última linha não deve conter nenhum espaço.
+
+R.: 
+
+Scanner entrada = new Scanner(System.in);
+List<String> degraus = new ArrayList<>();
+
+ 
+System.out.print("Digite o tamanho da escada: ");
+
+int qtdDegraus = entrada.nextInt();
+
+for (int i = 0; i < qtdDegraus; i++) 
+{
+	degraus.add(" ".repeat(qtdDegraus - i) + "*".repeat(i + 1));
+}
+
+
+for (String d : degraus ) 
+{
+	System.out.println(d);
+}
+
+
+# Questão 2
+
+Débora se inscreveu em uma rede social para se manter em contato com seus amigos. A página de cadastro exigia o preenchimento dos campos de nome e senha, porém a senha precisa ser forte. O site considera uma senha forte quando ela satisfaz os seguintes critérios:
+Possui no mínimo 6 caracteres.
+Contém no mínimo 1 digito.
+Contém no mínimo 1 letra em minúsculo.
+Contém no mínimo 1 letra em maiúsculo.
+Contém no mínimo 1 caractere especial. Os caracteres especiais são: !@#$%^&*()-+
+
+Débora digitou uma string aleatória no campo de senha, porém ela não tem certeza se é uma senha forte. Para ajudar Débora, construa um algoritmo que informe qual é o número mínimo de caracteres que devem ser adicionados para uma string qualquer ser considerada segura.
+
+R.:
+
+public static boolean validaSenha(String senha) {
+
+String regex = "^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[!@#$%^&*()-+])" + "(?=\\S+$).{6}$";
+
+Pattern p = Pattern.compile(regex);
+
+if (senha == null) {
+    return false;
+}
+
+if(senha.length() < 6) {
+
+	int sum = 6 - senha.length();
+	System.out.print(sum);	
+}
+
+Matcher m = p.matcher(senha);
+
+return m.matches();
+
+}    
+
+public static void main(String[] args) {
+
+	Scanner scanner = new Scanner(System.in);
+	System.out.println("Senha");
+	String senha = scanner.next();
+
+	System.out.println(validaSenha(senha));
+}
+
+
+# Questão 3
+
+Duas palavras podem ser consideradas anagramas de si mesmas se as letras de uma palavra podem ser realocadas para formar a outra palavra. Dada uma string qualquer, desenvolva um algoritmo que encontre o número de pares de substrings que são anagramas.
+
+R.:
+
+def anagramas(palavra):
+    if len(palavra) <=1:
+        return palavra
+	print(palavra.len())
+    else:
+        tmp = []
+        for aux in anagramas(palavra[1:]):
+            for i in range(len(palavra)):
+                tmp.append(aux[:i] + palavra[0:1] + aux[i:])
+        return tmp
+
+print(tmp.len())
